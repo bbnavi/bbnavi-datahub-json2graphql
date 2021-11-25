@@ -6,8 +6,12 @@ WORKDIR /app
 
 # nginx default
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker/database.yml /app/config/database.yml
+COPY docker/unicorn.rb /app/config/unicorn.rb
 
 COPY . .
+
+RUN chmod +x /app/docker/entrypoint.sh
 
 RUN bundle install
 
